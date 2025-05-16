@@ -7,6 +7,10 @@
         path = ./rust;
         description = "Rust template";
       };
+      python = {
+        path = ./python;
+        description = "Python template";
+      };
       typescript-pnpm = {
         path = ./typescript;
         description = "Typescript development with pnpm";
