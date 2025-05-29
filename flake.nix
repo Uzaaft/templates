@@ -12,7 +12,7 @@
         description = "Python template";
       };
       typescript-pnpm = {
-        path = ./typescript;
+        path = ./typescript-pnpm;
         description = "Typescript development with pnpm";
       };
     };
