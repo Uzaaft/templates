@@ -15,6 +15,10 @@
         path = ./typescript-pnpm;
         description = "Typescript development with pnpm";
       };
+      typescript-bun = {
+        path = ./typescript-bun;
+        description = "Typescript development with bun";
+      };
     };
   };
 }
