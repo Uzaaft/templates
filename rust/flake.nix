@@ -8,12 +8,17 @@
     crane = {
       url = "github:ipetkov/crane";
     };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
     self,
     nixpkgs,
     crane,
+    rust-overlay,
     flake-utils,
     ...
   }:
@@ -24,8 +29,12 @@
     ] (system: let
       pkgs = import nixpkgs {
         inherit system;
+        overlays = [(import rust-overlay)];
       };
-      craneLib = crane.mkLib pkgs;
+      craneLib = (crane.mkLib pkgs).overrideToolchain (p:
+        p.rust-bin.stable.latest.default.override {
+          extensions = ["rust-src" "rust-std" "clippy" "rustfmt" "rust-analyzer"];
+        });
       # Define the source files root for rust project
       unfilteredRoot = ./.;
 
@@ -83,6 +92,7 @@
 
       devShell = craneLib.devShell {
         buildInputs = [];
+        packages = with pkgs; [];
       };
     });
 }
