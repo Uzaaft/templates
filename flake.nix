@@ -19,6 +19,10 @@
         path = ./typescript-bun;
         description = "Typescript development with bun";
       };
+      go = {
+        path = ./go;
+        description = "Go development environment";
+      };
     };
   };
 }
